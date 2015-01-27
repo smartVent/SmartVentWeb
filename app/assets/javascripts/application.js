@@ -13,4 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require flat-ui/dist/js/flat-ui
+//= require videojs/dist/video-js/video
 //= require_tree .

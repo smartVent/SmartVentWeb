@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
+  get 'fuck', to: 'temperature_manager#all_rooms'
+  get 'temperature_manager/all_rooms'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'home#index' #controller#action
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
