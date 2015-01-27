@@ -1,3 +1,8 @@
+# To view this page as a nice file
+cmd shift p - "markdown editor" [enter]
+or
+'ctrl-shit-M'
+
 # To start the server:
 `foreman start`
 
@@ -21,4 +26,14 @@ routes.rb
 
 
 # github
-vim quits
+vim quits - escape key
+
+to look at changes
+'git status'
+
+to commit and push
+git add -A
+git commit -m "add custom message"
+
+# bash profile
+atom ~./bash_profile
