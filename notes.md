@@ -21,7 +21,7 @@ to make new controller
 `rails generate controller [controller name] [actions]`
 
 # URL
-
+To edit the URL, edit this ruby file
 routes.rb
 
 
@@ -32,8 +32,13 @@ to look at changes
 'git status'
 
 to commit and push
-git add -A
-git commit -m "add custom message"
+'git add -A'
+'git commit -a '
+'git push '
+
+* git push, with no branches will spit warnings since no branch was specified.
+'git push origin master' solves this
+
 
 # bash profile
 atom ~./bash_profile
