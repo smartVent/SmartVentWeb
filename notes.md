@@ -1,3 +1,5 @@
+# if it's not ^c it's ^d most times
+
 # To view this page as a nice file
 cmd shift p - "markdown editor" [enter]
 or
@@ -8,13 +10,22 @@ or
 
 check for elephant ( postgres running ?)
 
+to stop foreman '^-c'
+
 # Gems
+bundle install - after adding to Gemfile
+
 update with `bundle update`
 
 install files from github or rubygems.org
 
-bundle install - after adding to Gemfile
+# page navigation
 
+
+
+# model
+model class
+database table
 
 # MVC
 to make new controller
@@ -24,6 +35,8 @@ to make new controller
 To edit the URL, edit this ruby file
 routes.rb
 
+# migrate
+never edit schema
 
 # github
 vim quits - escape key

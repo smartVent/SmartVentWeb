@@ -1,0 +1,44 @@
+<% @rooms.each do |room| %>
+  <div class="row room">
+    <span class="room-label col-xs-6"> <%= room.name %></span>
+    <div class="temps col-xs-5">
+      <div class="current">
+        <span class="temp-label">Current</span>
+        <span class="temp"> <%= room.current_temp %>º</span>
+      </div>
+      <div class="target">
+        <span class="temp-label">Target</span>
+        <span class="temp"> <%= room.target_temp %>º</span>
+      </div>
+    </div>
+    <div class="more col-xs-1">
+      <%= link_to edit_room_path(room) do %>
+        <span class="fui-arrow-right"></span>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<div class="row">
+  <button id="open" class="btn btn-primary" type="button">
+    Temperature Up
+    <span class="fui-triangle-up"></span>
+  </button>
+  <button id="close" class="btn btn-danger" type="button">
+    Temperature Down
+    <span class="fui-triangle-down"></span>
+  </button>
+  <button id="update" class="btn btn-warning" type="button">Get Nums</button>
+</div>
+<div class="row">
+  Up reqs: <span id="open-reqs">0</span>
+  <br>
+  Down reqs: <span id="close-reqs">0</span>
+</div>
+<div class="row">
+  <b>TEMP</b>
+  <input type="text" id="temp" name="temp">
+  <button id="set" class="btn btn-danger" type="button">
+    Set
+  </button>
+</div>

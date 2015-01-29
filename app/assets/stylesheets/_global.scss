@@ -1,0 +1,27 @@
+body {
+  background-color: #ECF0F1
+}
+
+.menu {
+  border-top: 2px solid #fffeee;
+
+}
+
+.room {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 1em;
+  font-size: 28px;
+}
+
+.temp-label {
+  font-size: 16px;
+  color: #999;
+}
+
+.current .temp{
+   color : #3498DB;
+}
+
+.target .temp{
+  color : #F39C12;
+}
