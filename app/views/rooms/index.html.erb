@@ -18,7 +18,13 @@
     </div>
   </div>
 <% end %>
-
+<div class="row">
+  <%= link_to new_room_path(@room) do %>
+    <button id="set" class="btn btn-danger" type="button">
+      New Room
+    </button>
+  <% end %>
+</div>
 <div class="row">
   <button id="open" class="btn btn-primary" type="button">
     Temperature Up

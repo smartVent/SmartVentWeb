@@ -51,7 +51,7 @@ to commit and push
 
 * git push, with no branches will spit warnings since no branch was specified.
 'git push origin master' solves this
-
+'git push -u origin master' 
 
 # bash profile
 atom ~./bash_profile
