@@ -1,9 +1,8 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+// You can use CoffeeScript in this file: http://coffeescript.org/
 
-# wrapped everything in document ready function
-
+// wrapped everything in document ready function
 $(document).ready(function() {
   $('#open').click(function() {
     $.ajax({
