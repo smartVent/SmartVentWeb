@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
   def index
-    @rooms = Room.all
+    @rooms = Room.order(id: :asc).all
   end
 
   def edit
@@ -22,11 +22,17 @@ class RoomsController < ApplicationController
 
   def create
     @room = Room.new(room_params)
-    if @room.save(room_params)
+    if @room.save
       redirect_to rooms_path #redirecting to action
     else
       render 'new'
     end
+  end
+
+  def destroy
+    Room.find(params[:id]).destroy
+    flash[:success] = "User Deleted"
+    redirect_to rooms_path 
   end
 
   private

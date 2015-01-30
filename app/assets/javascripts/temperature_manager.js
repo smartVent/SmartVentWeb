@@ -2,6 +2,9 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+# wrapped everything in document ready function
+
+$(document).ready(function() {
 $('#open').click(function() {
   $.ajax({
     type:'POST',
@@ -61,4 +64,5 @@ $('#update').click(function() {
   }).fail(function (res) {
     console.log(res);
   });
+});
 });
