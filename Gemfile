@@ -58,3 +58,7 @@ group :development, :test do
   # Annotate makes model comments from database
   gem 'annotate'
 end
+
+group :production do
+  gem "rails_12factor"
+end
