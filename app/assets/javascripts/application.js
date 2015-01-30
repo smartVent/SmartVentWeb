@@ -11,8 +11,8 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require turbolinks
-//= require flat-ui/dist/js/flat-ui
-//= require videojs/dist/video-js/video
+//= require bootstrap-sprockets
 //= require_tree .

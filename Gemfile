@@ -35,8 +35,7 @@ gem 'unicorn'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# Bower for Rails
-gem 'bower-rails'
+gem 'bootstrap-sass'
 
 # url thingy not numbers uses name
 gem 'friendly_id'
