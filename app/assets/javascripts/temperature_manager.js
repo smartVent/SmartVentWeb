@@ -3,65 +3,134 @@
 // You can use CoffeeScript in this file: http://coffeescript.org/
 
 // wrapped everything in document ready function
-$(document).ready(function() {
-  $('#open').click(function() {
-    $.ajax({
-      type:'POST',
-      url:'https://api.spark.io/v1/devices/smartVentCore/board',
-      data: {access_token:'b6efaaaae2949ae5fabb63d002233ca207a6dc84'}
-    }).done(function (res) {
-      console.log(res);
-    }).fail(function (res) {
-      console.log(res);
-    });
-  });
+var TemperatureManager = {
+  init: function() {
+    var object_temp;
+    var ambient_temp;
+    var current_temp;
 
-  $('#close').click(function() {
-    $.ajax({
-      type:'POST',
-      url:'https://api.spark.io/v1/devices/smartVentCore/core',
-      data: {access_token:'b6efaaaae2949ae5fabb63d002233ca207a6dc84'}
-    }).done(function (res) {
-      console.log(res);
-    }).fail(function (res) {
-      console.log(res);
-    });
-  });
+    var spark_id = $('#room_spark_id').val();
+    var access_token = $('#room_access_token').val();
 
-  $('#set').click(function() {
+    // TODO expose and calculate current_temp on Spark
     $.ajax({
-      type:'POST',
-      url:'https://api.spark.io/v1/devices/smartVentCore/temp',
-      data: {access_token:'b6efaaaae2949ae5fabb63d002233ca207a6dc84'}
-    }).done(function (res) {
-      $('#temp').html(res.result);
+      type: 'GET',
+      url: 'https://api.spark.io/v1/devices/' + spark_id + '/object_temp',
+      cache: false,
+      data: { access_token: access_token }
+    }).done(function(res) {
       console.log(res);
-    }).fail(function (res) {
-      console.log(res);
+      object_temp = res.result;
+      $('#current_temp').html(object_temp.toFixed(1) + 'º');
+    }).fail(function(res) {
+      console.warn(res);
     });
-  });
+
+    $('#open').click(function() {
+      $.ajax({
+        type:'POST',
+        url:'https://api.spark.io/v1/devices/' + spark_id + '/board',
+        data: { access_token: access_token }
+      }).done(function (res) {
+        console.log(res);
+      }).fail(function (res) {
+        console.log(res);
+      });
+    });
+
+    $('#close').click(function() {
+      $.ajax({
+        type:'POST',
+        url:'https://api.spark.io/v1/devices/' + spark_id + '/core',
+        data: { access_token: access_token }
+      }).done(function (res) {
+        console.log(res);
+      }).fail(function (res) {
+        console.log(res);
+      });
+    });
+
+    $('#send').click(function() {
+      $.ajax({
+        type: 'POST',
+        url: 'https://api.spark.io/v1/devices/' + spark_id + '/set_target',
+        data: {
+          access_token: access_token,
+          params: $('#room_target_temp').val()
+        }
+      }).done(function (res) {
+        console.log(res);
+        if (res.return_value === -1) {
+          alert('temperature invalid.')
+        }
+      }).fail(function (res) {
+        console.log(res);
+      });
+    });
+
+    $('#show').click(function() {
+      $.ajax({
+        type:'GET',
+        url:'https://api.spark.io/v1/devices/' + spark_id + '/current_temp',
+        data: { access_token: access_token }
+      }).done(function (res) {
+        $('#current-temp').html(res.result);
+        console.log(res);
+      }).fail(function (res) {
+        console.log(res);
+      });
+    });
 
 
-  $('#update').click(function() {
-    $.ajax({
-      type:'GET',
-      url:'https://api.spark.io/v1/devices/smartVentCore/req_core',
-      data: {access_token:'b6efaaaae2949ae5fabb63d002233ca207a6dc84'}
-    }).done(function (res) {
-      $('#close-reqs').html(res.result);
-      console.log(res);
-    }).fail(function (res) {
-      console.log(res);
+
+
+
+    $('#update').click(function() {
+      $.ajax({
+        type:'GET',
+        url:'https://api.spark.io/v1/devices/' + spark_id + '/req_core',
+        data: { access_token: access_token }
+      }).done(function (res) {
+        $('#close-reqs').html(res.result);
+        console.log(res);
+      }).fail(function (res) {
+        console.log(res);
+      });
+      $.ajax({
+        type:'GET',
+        url:'https://api.spark.io/v1/devices/' + spark_id + '/req_board',
+        data: { access_token: access_token }
+      }).done(function (res) {
+        $('#open-reqs').html(res.result);
+        console.log(res);
+      }).fail(function (res) {
+        console.log(res);
+      });
+      $.ajax({
+        type:'GET',
+        url:'https://api.spark.io/v1/devices/' + spark_id + '/target_temp',
+        data: { access_token: access_token }
+      }).done(function (res) {
+        $('#target-temp').html(res.result);
+        console.log(res);
+      }).fail(function (res) {
+        console.log(res);
+      });
+      $.ajax({
+        type:'GET',
+        url:'https://api.spark.io/v1/devices/' + spark_id + '/temperature',
+        data: { access_token: access_token }
+      }).done(function (res) {
+        $('#temperature').html(res.result);
+        console.log(res);
+      }).fail(function (res) {
+        console.log(res);
+      });
     });
-    $.ajax({
-      type:'GET',
-      url:'https://api.spark.io/v1/devices/smartVentCore/req_board',
-      data: {access_token:'b6efaaaae2949ae5fabb63d002233ca207a6dc84'}
-    }).done(function (res) {
-      $('#open-reqs').html(res.result);
-      console.log(res);
-    }).fail(function (res) {
-      console.log(res);
-    });
-  });
-});
+  },
+
+  updateIndexTemps: function() {
+    // TODO
+    alert('one day we\'ll update these temperatures!');
+  }
+};

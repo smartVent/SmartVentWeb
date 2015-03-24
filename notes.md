@@ -19,9 +19,14 @@ update with `bundle update`
 
 install files from github or rubygems.org
 
-# page navigation
 
 
+# to make new page
+make new controller
+rake annotate_routes
+
+# to link to that page
+link_to prefix_path // prefix comes from routes.rb
 
 # model
 model class
@@ -51,7 +56,7 @@ to commit and push
 
 * git push, with no branches will spit warnings since no branch was specified.
 'git push origin master' solves this
-'git push -u origin master' 
+'git push -u origin master'
 
 # bash profile
 atom ~./bash_profile

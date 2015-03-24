@@ -9,6 +9,7 @@
 #  target_temp  :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  spark_id     :string
 #
 # Indexes
 #

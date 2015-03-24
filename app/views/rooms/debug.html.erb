@@ -1,0 +1,53 @@
+<div class="row room">
+  <span class="room-label ">DEBUG</span>
+    <div class="temps">
+      <%= form_for(@room) do |f|  %>
+        <%= f.label :name  , class: "temp-label" %>
+        <%= @room.name %>
+        <p></p>
+        <%= f.label :spark_id, class: "temp-label" %>
+        <%= @room.spark_id %>
+        <div >
+          <span class="temp-label">Set </span><%= f.label :current_temp , class: "temp-label" %>
+          <span class="temp"> <%= @room.current_temp %>º</span>
+        </div>
+        <div >
+          <span class="temp-label">Set</span> <%= f.label :target_temp , class: "temp-label" %>
+          <span class="temp"> <%= @room.target_temp %>º</span>
+        </div>
+        <div>
+          <div>
+            Sent Target Temp: <span id="target-temp">0</span>
+          </div>
+          <div>
+            Sent 1212 Val: <span id="temperature">0</span>
+          </div>
+        </div>
+        <div>
+          <button id="update" class="btn btn-warning" type="button">Get Nums</button>
+          <button id="show" class="btn btn-primary" type="button">Update Temp</button>
+          <button id="send" class="btn btn-primary" type="button">Send Target</button>
+        </div>
+        <div>
+          <div class="row">
+              <div class="col-xs-3">
+                Board LED reqs: <span id="open-reqs">0</span>
+              </div>
+              <div class="col-xs-5">
+                Read Temperature : <span id="current-temp">701</span>
+              </div>
+
+          </div>
+          <div class="row">
+            <div>
+              Core LED reqs: <span id="close-reqs">0</span>
+            </div>
+            <div>
+              Sent Target Temp: <span id="target_temp">0</span>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

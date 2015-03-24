@@ -1,29 +1,38 @@
 <div class="row room">
-<span class="room-label "> <%= @room.name %></span>
-  <div class="temps">
+  <span class="room-label "> <%= @room.name %></span>
+    <div class="temps">
       <%= form_for(@room) do |f|  %>
+        <%= f.hidden_field :access_token, value: Rails.application.secrets.spark_access_token %>
         <%= f.label :name  , class: "temp-label" %>
         <%= f.text_field :name %>
-       <div class="current">
-        <%= f.label :current_temp , class: "temp-label" %>
-        <%= f.text_field :current_temp %>
-        Original Setting
-        <span class="temp"> <%= @room.current_temp %>º</span>
-      </div>
-      <div class="target">
-        <%= f.label :target_temp , class: "temp-label" %>
-        <%= f.text_field :target_temp %>
-        Original Setting
-        <span class="temp"> <%= @room.target_temp %>º</span>
-      </div>
-      <%= f.submit "Update Settings", class: "btn btn-primary" %>
+        <%= f.label :spark_id, class: "temp-label" %>
+        <%= f.text_field :spark_id %>
+        <div class="current">
+          Current Temp
+          <span id="current_temp" class="temp"> <%= @room.current_temp %>º</span>
+        </div>
+        <div class="target">
+          <%= f.label :target_temp , class: "temp-label" %>
+          <%= f.text_field :target_temp %>
+
+        </div>
+        <%= f.submit "Update Settings", class: "btn btn-primary" %>
       <% end %>
       <%= link_to "Delete Room", @room, method: :delete, data: { confirm: "You are about to delete this room. Continue?" }, class: "btn btn-danger" %>
-      <p>"Hey that CSS doesn't look good"</p>
-      <p>"Really?"</p>
-      <p>"Yeah. Looks like dog shit"</p>
-      <p>*Gun cocks*</p>
-      <p>"Looks great"</p>
+      <div class="row">
+        <%= link_to debug_path(@room) do %>
+          <button class="btn btn-danger" type="button">
+            Debug
+          </button>
+        <% end %>
+      </div>
+    </div>
+    <div class="temps">
+      <button id="send" class="btn btn-primary" type="button">Send Target</button>
+    </div>
   </div>
 </div>
-</div>
+
+<script>
+  TemperatureManager.init();
+</script>

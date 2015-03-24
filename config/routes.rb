@@ -9,15 +9,13 @@
 #           PATCH  /rooms/:id(.:format)      rooms#update
 #           PUT    /rooms/:id(.:format)      rooms#update
 #           DELETE /rooms/:id(.:format)      rooms#destroy
+#     debug GET    /debug/:id(.:format)      rooms#debug
 #      root GET    /                         home#index
 #
 
 Rails.application.routes.draw do
   resources :rooms
-
+  get '/debug/:id', to:'rooms#debug', as: 'debug'
 
   root 'home#index' #controller#action
-
-
-
 end
