@@ -1,37 +1,35 @@
-<div class="row room">
-  <span class="room-label "> <%= @room.name %></span>
-    <div class="temps">
-      <%= form_for(@room) do |f|  %>
-        <%= f.hidden_field :access_token, value: Rails.application.secrets.spark_access_token %>
-        <%= f.label :name  , class: "temp-label" %>
-        <%= f.text_field :name %>
-        <%= f.label :spark_id, class: "temp-label" %>
-        <%= f.text_field :spark_id %>
-        <div class="current">
-          Current Temp
-          <span id="current_temp" class="temp"> <%= @room.current_temp %>º</span>
-        </div>
-        <div class="target">
-          <%= f.label :target_temp , class: "temp-label" %>
-          <%= f.text_field :target_temp %>
-
-        </div>
-        <%= f.submit "Update Settings", class: "btn btn-primary" %>
-      <% end %>
-      <%= link_to "Delete Room", @room, method: :delete, data: { confirm: "You are about to delete this room. Continue?" }, class: "btn btn-danger" %>
-      <div class="row">
-        <%= link_to debug_path(@room) do %>
-          <button class="btn btn-danger" type="button">
-            Debug
-          </button>
-        <% end %>
-      </div>
+<h1 class="room-label"> <%= @room.name %></h1>
+<%= form_for(@room) do |f|  %>
+  <%= f.hidden_field :access_token, value: Rails.application.secrets.spark_access_token %>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <%= f.label :name  , class: "temp-label" %>
+      <%= f.text_field :name, class: "form-control" %>
     </div>
-    <div class="temps">
-      <button id="send" class="btn btn-primary" type="button">Send Target</button>
+    <div class="form-group col-md-6">
+      <%= f.label :spark_id, class: "temp-label" %>
+      <%= f.text_field :spark_id, class: "form-control" %>
     </div>
   </div>
-</div>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <%= f.label :target_temp , class: "temp-label" %>
+      <%= f.text_field :target_temp, class: "form-control" %>
+    </div>
+    <div class="form-group col-md-6">
+      <label class="temp-label" for="current_temp">Current Temp</label>
+      <input id="current_temp" class="form-control" value="<%= @room.current_temp %>º" disabled>
+    </div>
+  </div>
+  <div class="controls">
+    <%= f.submit "Update Settings", class: "btn btn-primary" %>
+    <%= link_to "Send Target", "#", id: "send", class: "btn btn-primary" %> 
+    <div class="pull-right">
+      <%= link_to "Delete Room", @room, method: :delete, data: { confirm: "You are about to delete this room. Continue?" }, class: "btn btn-danger" %>
+      <%= link_to "Debug", debug_path(@room), class: "btn btn-info" %>
+    </div>
+  </div>
+<% end %>
 
 <script>
   TemperatureManager.init();
