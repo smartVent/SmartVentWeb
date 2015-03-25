@@ -22,8 +22,8 @@
     </div>
   </div>
   <div class="controls">
-    <%= f.submit "Update Settings", class: "btn btn-primary" %>
-    <%= link_to "Send Target", "#", id: "send", class: "btn btn-primary" %> 
+    <%= f.submit "Update Settings", id: "update_settings", class: "btn btn-primary" %>
+    <%= link_to "Send Target", "#", id: "send", class: "btn btn-primary" %>
     <div class="pull-right">
       <%= link_to "Delete Room", @room, method: :delete, data: { confirm: "You are about to delete this room. Continue?" }, class: "btn btn-danger" %>
       <%= link_to "Debug", debug_path(@room), class: "btn btn-info" %>

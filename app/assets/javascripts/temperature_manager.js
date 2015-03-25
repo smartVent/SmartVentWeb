@@ -13,19 +13,72 @@ var TemperatureManager = {
     var access_token = $('#room_access_token').val();
 
     // TODO expose and calculate current_temp on Spark
-    $.ajax({
-      type: 'GET',
-      url: 'https://api.spark.io/v1/devices/' + spark_id + '/object_temp',
-      cache: false,
-      data: { access_token: access_token }
-    }).done(function(res) {
-      console.log(res);
-      object_temp = res.result;
-      $('#current_temp').html(object_temp.toFixed(1) + 'º');
-    }).fail(function(res) {
-      console.warn(res);
+    var checkTemp = function() {
+      $.ajax({
+        type: 'GET',
+        url: 'https://api.spark.io/v1/devices/' + spark_id + '/object_temp',
+        cache: false,
+        data: { access_token: access_token }
+      }).done(function(res) {
+        console.log(res);
+        object_temp = res.result;
+        $('#current_temp').val(object_temp.toFixed(1) + 'º');
+      }).fail(function(xhr, status, erro) {
+        console.warn(status);
+      });
+    }
+
+    // Checks for temperature every 3 seconds.
+    setInterval(checkTemp, 3 * 1000);
+
+    $('#update_settings').on('click', function(e) {
+      e.preventDefault();
+      $.ajax({
+        type: 'POST',
+        url: 'https://api.spark.io/v1/devices/' + spark_id + '/set_target',
+        data: {
+          access_token: access_token,
+          params: $('#room_target_temp').val()
+        }
+      }).done(function(data) {
+        if (data.return_value === -1) {
+          alert("temperature invalid.");
+          return false;
+          // TODO ensure this stops the submission event.
+        }
+
+        return true;
+      }).fail(function(xhr, status, err) {
+        console.warn(status);
+        return false;
+      });
     });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// =========================================================
     $('#open').click(function() {
       $.ajax({
         type:'POST',
