@@ -32,7 +32,7 @@ var TemperatureManager = {
     setInterval(checkTemp, 3 * 1000);
 
     $('#update_settings').on('click', function(e) {
-      e.preventDefault();
+      //e.preventDefault();
       $.ajax({
         type: 'POST',
         url: 'https://api.spark.io/v1/devices/' + spark_id + '/set_target',
@@ -43,7 +43,7 @@ var TemperatureManager = {
       }).done(function(data) {
         if (data.return_value === -1) {
           alert("temperature invalid.");
-          return false;
+          return true;
           // TODO ensure this stops the submission event.
         }
 
