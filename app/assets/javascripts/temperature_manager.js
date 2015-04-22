@@ -183,7 +183,25 @@ var TemperatureManager = {
   },
 
   updateIndexTemps: function() {
-    // TODO
-    alert('one day we\'ll update these temperatures!');
+    var spark_id = "54ff69066672524846481267";
+    var access_token = "a16d376859536e0a3c397147c5c09e5743f650d4";
+
+    var checkTemp = function() {
+      $.ajax({
+        type: 'GET',
+        url: 'https://api.spark.io/v1/devices/' + spark_id + '/object_temp',
+        cache: false,
+        data: { access_token: access_token }
+      }).done(function(res) {
+        console.log(res);
+        object_temp = res.result;
+        $('#living-room-current_temp').val(object_temp.toFixed(1) + 'º');
+      }).fail(function(xhr, status, erro) {
+        console.warn(status);
+      });
+    }
+
+    // Checks for temperature every 3 seconds.
+    setInterval(checkTemp, 3 * 1000);
   }
 };

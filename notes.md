@@ -53,6 +53,7 @@ to commit and push
 'git add -A'
 'git commit -a '
 'git push '
+'git push heroku master'
 
 * git push, with no branches will spit warnings since no branch was specified.
 'git push origin master' solves this

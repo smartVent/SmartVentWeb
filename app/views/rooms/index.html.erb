@@ -1,17 +1,19 @@
 <% @rooms.each do |room| %>
   <div class="row room">
     <span class="room-label col-md-6"><%= room.name %></span>
-    <div class="temps col-md-5">
+    <div class="temps col-md-5 col-xs-10">
       <div class="current">
         <span class="temp-label">Current</span>
-        <span class="temp"> <%= room.current_temp %>º</span>
+        <span id="<%= room.name.parameterize %>-current-temp" class="temp">
+          <%= room.current_temp %>º
+        </span>
       </div>
       <div class="target">
         <span class="temp-label">Target</span>
         <span class="temp"> <%= room.target_temp %>º</span>
       </div>
     </div>
-    <div class="more col-md-1">
+    <div class="more col-md-1 col-xs-2">
       <%= link_to edit_room_path(room) do %>
         <span class="glyphicon glyphicon-chevron-right"></span>
       <% end %>
